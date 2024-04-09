@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,10 +22,11 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.weatherapp.ui.DataField
+import com.weatherapp.ui.PasswordField
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,18 +51,15 @@ fun LoginPage(modifier: Modifier = Modifier) {
             text = "Bem-vindo/a!",
             fontSize = 24.sp
         )
-        OutlinedTextField(
-            value = email,
-            label = { Text(text = "Digite seu e-mail") },
-            modifier = Modifier,
-            onValueChange = { email = it }
+        DataField(
+            field = email,
+            label = "Digite seu e-mail",
+            onTextChange = { email = it }
         )
-        OutlinedTextField(
-            value = password,
-            label = { Text(text = "Digite sua senha") },
-            modifier = Modifier,
-            onValueChange = { password = it },
-            visualTransformation = PasswordVisualTransformation()
+        PasswordField(
+            password = password,
+            label = "Digite sua senha",
+            onPasswordChange = { password = it }
         )
         Row(modifier = modifier) {
             Button(
